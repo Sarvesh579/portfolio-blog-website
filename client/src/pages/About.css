@@ -1,0 +1,395 @@
+/* -------------------------------------------------
+   Base Layer
+------------------------------------------------- */
+
+.about-page {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  z-index: 1;
+}
+
+/* Keep all text above background */
+.about-intro,
+.about-skills,
+.about-cta {
+  position: relative;
+  z-index: 2;
+}
+
+/* -------------------------------------------------
+   Animated Background
+------------------------------------------------- */
+
+.animated-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+
+  background:
+    radial-gradient(circle at 15% 20%, rgba(128, 70, 255, 0.25), transparent 35%),
+    radial-gradient(circle at 85% 70%, rgba(37, 21, 72, 0.22), transparent 40%),
+    linear-gradient(120deg, #06000f, #0d0622, #06000f);
+
+  background-size: 200% 200%;
+}
+
+/* -------------------------------------------------
+   Floating Shapes
+------------------------------------------------- */
+.shape {
+  position: absolute;
+  filter: blur(2px);
+  opacity: 0.75;
+  animation: float 18s ease-in-out infinite alternate;
+  background: none;      
+  border-radius: 0;      
+}
+
+.s1 {
+  top: 10%;
+  left: 5%;
+
+  width: 0;
+  height: 0;
+
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;
+  border-bottom: 170px solid rgba(135, 70, 255, 0.5);
+
+  filter: blur(5px);
+  animation: float 14s ease-in-out infinite alternate;
+}
+
+.s2 {
+  width: 260px; height: 260px;
+  border-radius: 50%;
+  background: rgba(255, 160, 40, 0.5);
+  bottom: 15%; left: 12%;
+  animation-duration: 15s;
+}
+
+.s3 {
+  width: 210px; height: 210px;
+  border-radius: 50%;
+  background: rgba(180, 120, 255, 0.4);
+  top: 20%; right: 10%;
+  animation-duration: 12s;
+}
+
+.s4 {
+  width: 140px; height: 140px;
+  border-radius: 18%;
+  background: rgba(90, 255, 160, 0.3);
+  bottom: 20%; right: 15%;
+  animation-duration: 18s;
+}
+
+@keyframes float {
+  0%   { transform: translate(0,0) rotate(0deg); }
+  50%  { transform: translate(30px,-60px) rotate(25deg); }
+  100% { transform: translate(60px,-120px) rotate(45deg); }
+}
+
+/* -------------------------------------------------
+   Intro Section – Magazine Editorial Style
+------------------------------------------------- */
+
+.about-intro {
+  padding: 110px 24px 40px;   /* reduced gap below navbar */
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+}
+
+/* Magazine Card */
+.intro-card {
+  background: rgb(239, 236, 231, 0.8);
+  color: black;
+
+  width: 55%;                /* reduced width on PC */
+  max-width: 900px;
+  padding: 28px;
+
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;   /* align heading to top of photo */
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.18),
+    0 0 50px rgba(255, 255, 255, 0.18);
+}
+
+/* Large Magazine Photo */
+.intro-photo img {
+  width: 300px;
+  height: 340px;
+  object-fit: cover;
+}
+
+/* Fade + Float animation */
+.photo-animate {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: photoFloat 1s ease-out forwards;
+}
+
+@keyframes photoFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Right Column */
+.intro-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Grey magazine date line */
+.intro-date {
+  font-size: 16px;
+  color: #777;
+  letter-spacing: 0.5px;
+  margin-bottom: 1px;
+  text-transform: uppercase;
+}
+
+/* Two-Font Name Styling */
+.intro-heading {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  margin-bottom: 0px;
+  margin-top: -8px;  /* pulls heading closer to date */
+}
+
+.first-name {
+  font-size: 80px;
+  font-weight: 500;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #111;
+  letter-spacing: 1px;
+}
+
+.last-name {
+  font-size: 70px;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-style: italic;
+  color: #111;
+  margin-top: -8px;
+  font-weight: 500;
+}
+
+.intro-content p {
+  font-size: 18px;
+  line-height: 1.65;
+  color: #444;
+  max-width: 520px;
+}
+
+.scramble {
+  display: inline-block;
+  min-width: 1ch;
+}
+
+/* -------------------------------------------------
+   Mobile Magazine Responsive
+------------------------------------------------- */
+
+@media (max-width: 768px) {
+  .intro-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 18px;
+    background: rgba(240,240,240,0.55); /* translucent */
+    width: 85%;
+    gap: 14px;
+  }
+
+  .intro-photo img {
+    display: none;
+  }
+
+  .intro-heading {
+    align-items: center;
+    margin-top: 0;
+  }
+
+  .first-name {
+    font-size: 40px;
+  }
+
+  .last-name {
+    font-size: 40px;
+    margin-top: -4px;
+  }
+    
+  .intro-date {
+    display: none;
+  }
+
+  .intro-content p {
+    font-size: 16px;
+    max-width: 100%;
+    color: #000;
+    line-height: 1.2;
+  }
+}
+
+.decode-text {
+  font-family: monospace;
+  color: #444;
+}
+
+/* Paragraph fade + float */
+.para-fade {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: paraFloat 1s ease-out forwards;
+  animation-delay: 0s; /* begins after heading starts scrambling */
+}
+
+@keyframes paraFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  from { border-color: transparent }
+  to { border-color: #111 }
+}
+
+/* -------------------------------------------------
+   Personality Gallery
+------------------------------------------------- */
+
+.about-gallery {
+  margin-top: 20px;
+}
+
+.gallery-track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 16px 24px;
+  scroll-snap-type: x mandatory;
+}
+
+.gallery-track::-webkit-scrollbar {
+  height: 8px;
+}
+
+.gallery-track::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.05);
+  border-radius: 4px;
+}
+
+.gallery-track::-webkit-scrollbar-thumb {
+  background: rgba(200,200,255,0.4);
+  border-radius: 6px;
+}
+
+.gallery-item {
+  min-width: 220px;
+  min-height: 80px;
+  max-width: 240px;
+  padding: 16px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 18px;
+  backdrop-filter: blur(10px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  color: lavender;
+  font-size: 17px;
+  line-height: 1.4;
+
+  scroll-snap-align: start;
+}
+
+/* -------------------------------------------------
+   Skills Section
+------------------------------------------------- */
+
+.about-skills {
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.skills-grid {
+  max-width: 600px;
+  margin: 24px auto 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 16px;
+}
+
+.skills-grid span {
+  background: rgba(255,255,255,0.05);
+  padding: 10px;
+  border-radius: 20px;
+  color: lavender;
+}
+
+/* -------------------------------------------------
+   CTA Section
+------------------------------------------------- */
+
+.about-cta {
+  padding: 80px 24px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.resume-btn,
+.works-btn {
+  text-decoration: none;
+  padding: 12px 26px;
+  border-radius: 30px;
+  transition: 0.2s;
+}
+
+.resume-btn {
+  border: 1px solid orange;
+  color: orange;
+}
+
+.resume-btn:hover {
+  background: orange;
+  color: black;
+}
+
+.works-btn {
+  background: lavender;
+  color: black;
+}
+
+.works-btn:hover {
+  opacity: 0.8;
+}

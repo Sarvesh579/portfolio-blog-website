@@ -1,0 +1,134 @@
+/* Overlay background */
+.contact-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+
+  animation: fadeIn 0.2s ease;
+}
+
+/* Modal box */
+.contact-modal {
+  background: #1a1625;
+  padding: 28px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 420px;
+
+  position: relative;
+  animation: popIn 0.25s ease;
+  color: lavender;
+}
+
+/* Header row: title + close button aligned */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 10px;
+}
+
+/* Remove margin so alignment stays clean */
+.modal-header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* Close button */
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+
+  background: transparent;
+  border: none;
+  outline: none;
+
+  font-size: 40px;      /* smaller */
+  font-weight: 300;
+  color: lavender;
+
+  padding: 4px 8px;     /* smaller hitbox */
+  cursor: pointer;
+
+  transition: color 0.2s ease;
+}
+
+/* Hover effect */
+.close-modal:hover {
+  color: orange;
+}
+
+/* Remove blue focus outline on click */
+.close-modal:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+
+
+/* Email */
+.contact-email {
+  text-align: center;
+  margin-bottom: 16px;
+  opacity: 0.8;
+}
+
+/* Form */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 12px;
+  border-radius: 12px;
+  color: white;
+}
+
+.contact-form textarea {
+  height: 100px;
+  resize: none;
+}
+
+.send-btn {
+  background: orange;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.send-btn:hover {
+  opacity: 0.85;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.9) translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}

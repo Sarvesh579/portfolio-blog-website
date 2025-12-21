@@ -1,0 +1,226 @@
+.works-page {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding-top: 140px;
+  color: lavender;
+  z-index: 1;
+}
+
+/* ------------------------------------------------------
+   SAME BACKGROUND AS ABOUT PAGE
+------------------------------------------------------ */
+.works-content,
+.cards-container,
+.toggle-wrapper {
+  position: relative;
+  z-index: 2;
+}
+
+/* ✅ Added spacing for content */
+.works-content {
+  margin-top: 40px;
+  margin-bottom: 80px;
+}
+
+.animated-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+
+  background:
+    radial-gradient(circle at 15% 20%, rgba(128, 70, 255, 0.25), transparent 35%),
+    radial-gradient(circle at 85% 70%, rgba(255, 140, 0, 0.22), transparent 40%),
+    linear-gradient(120deg, #06000f, #0d0622, #06000f);
+
+  background-size: 200% 200%;
+  animation: bgParallax 14s ease-in-out infinite alternate;
+}
+
+@keyframes bgParallax {
+  from { background-position: 0% 0%; }
+  to   { background-position: 100% 100%; }
+}
+
+.shape {
+  position: absolute;
+  filter: blur(2px);
+  opacity: 0.75;
+  animation: float 18s ease-in-out infinite alternate;
+}
+
+/* --- floating shapes unchanged --- */
+
+@keyframes float {
+  0%   { transform: translate(0,0) rotate(0deg); }
+  50%  { transform: translate(30px,-60px) rotate(25deg); }
+  100% { transform: translate(60px,-120px) rotate(45deg); }
+}
+
+/* ------------------------------------------------------
+   SLIDING TOGGLE
+------------------------------------------------------ */
+.toggle-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.toggle-slider {
+  position: relative;
+  background: rgba(255,255,255,0.1);
+  padding: 6px;
+  border-radius: 40px;
+  display: flex;
+  width: 280px;
+  height: 46px;
+}
+
+.toggle-slider button {
+  flex: 1;
+  background: transparent;
+  color: lavender;
+  font-size: 15px;
+  cursor: pointer;
+  z-index: 2;
+  border: none;
+  outline: none;
+  transition: color 0.2s ease;
+  border-radius: 40px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.toggle-slider button.active {
+  color: black;
+  font-weight: 600;
+}
+
+.toggle-slider .slider {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  width: 50%;
+  background: orange;
+  border-radius: 30px;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+.slider.projects { transform: translateX(0%); }
+.slider.certifications { transform: translateX(140px); }
+
+.toggle-slider button:focus,
+.toggle-slider button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* ------------------------------------------------------
+   CARDS CONTAINER
+------------------------------------------------------ */
+.cards-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px; /* ✅ improved spacing */
+}
+
+/* ------------------------------------------------------
+   CARD
+------------------------------------------------------ */
+.card {
+  background: rgba(255,255,255,0.06);
+  padding: 20px;
+  border-radius: 18px;
+  cursor: pointer;
+  margin-bottom: 4px; /* ✅ per-card spacing */
+
+  transform: translateY(40px);
+  opacity: 0;
+
+  transition:
+    transform 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.9s ease,
+    background 0.25s ease;
+}
+
+.card.show-card {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.card:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+.card.open {
+  background: rgba(255,255,255,0.09);
+}
+
+/* ------------------------------------------------------
+   TECH TAGS
+------------------------------------------------------ */
+.tech span {
+  background: rgba(255,255,255,0.15);
+  padding: 4px 10px;
+  border-radius: 10px;
+  margin-right: 6px;
+  font-size: 13px;
+}
+
+/* ------------------------------------------------------
+   ACCORDION EXPANSION (NEW, SAFE)
+------------------------------------------------------ */
+/* ------------------------------------------------------
+   ACCORDION (GRID-BASED — SYNCED)
+------------------------------------------------------ */
+.accordion-body {
+  display: grid;
+  grid-template-rows: 0fr;
+
+  opacity: 0;
+  transform: translateY(-6px);
+
+  transition:
+    grid-template-rows 0.65s ease,
+    opacity 0.55s ease,
+    transform 0.55s ease;
+
+  will-change: grid-template-rows, opacity, transform;
+}
+
+.accordion-body > * {
+  overflow: hidden;
+}
+
+.card.open .accordion-body {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ------------------------------------------------------
+   LINKS & IMAGES
+------------------------------------------------------ */
+.project-links {
+  margin-top: 12px;
+  display: flex;
+  gap: 16px;
+}
+
+.project-links a {
+  color: orange;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.project-links a:hover {
+  text-decoration: underline;
+}
+
+.cert-image {
+  margin-top: 12px;
+  width: 100%;
+  border-radius: 10px;
+}

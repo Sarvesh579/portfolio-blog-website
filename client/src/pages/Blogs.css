@@ -1,0 +1,204 @@
+.blogs-page {
+  padding-top: 110px;
+  min-height: calc(100vh - 110px);
+  background:
+    radial-gradient(circle at 15% 20%, rgba(128, 70, 255, 0.18), transparent 35%),
+    radial-gradient(circle at 85% 70%, rgba(255, 140, 0, 0.18), transparent 40%),
+    linear-gradient(120deg, #06000f, #0d0622, #06000f);
+  color: lavender;
+}
+
+.blogs-header {
+  max-width: 960px;
+  margin: 0 auto 32px;
+  padding: 0 24px;
+}
+
+.blogs-header h1 {
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+
+.blogs-subtitle {
+  color: #c8c8ff;
+  font-size: 16px;
+}
+
+.blogs-controls {
+  margin-top: 18px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.blogs-controls input {
+  flex: 1;
+  min-width: 180px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(10, 5, 25, 0.7);
+  color: lavender;
+}
+
+/* DROPDOWN */
+.dropdown {
+  position: relative;
+  width: 150px;
+}
+
+.dropdown-selected {
+  background: rgba(10, 5, 25, 0.7);
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 8px 12px;
+  border-radius: 999px;
+  color: lavender;
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.dropdown-selected .arrow {
+  margin-left: 10px;
+  font-size: 12px;
+}
+
+/* DROPDOWN MENU (with animation) */
+.dropdown-menu {
+  position: absolute;
+  top: 45px;
+  width: 100%;
+  background: rgba(20, 10, 40, 0.95);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  backdrop-filter: blur(6px);
+  max-height: 260px;
+  overflow-y: auto;
+
+  /* ANIMATION */
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: dropdownOpen 0.25s ease-out forwards;
+}
+
+@keyframes dropdownOpen {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* When closing */
+.dropdown-menu.close {
+  animation: dropdownClose 0.2s ease-in forwards;
+}
+
+@keyframes dropdownClose {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-10px); }
+}
+
+.dropdown-item {
+  padding: 7px 14px;
+  color: lavender;
+  cursor: pointer;
+  transition: 0.3s;
+  white-space: nowrap;
+}
+
+.dropdown-item:hover {
+  background: rgba(255, 180, 0, 0.25);
+  color: orange;
+}
+
+.dropdown-menu::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.35);
+}
+
+/* BLOG CARDS */
+.blogs-grid {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.blog-card {
+  background: rgba(255,255,255,0.06);
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s;
+}
+
+.blog-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255,255,255,0.1);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+}
+
+.blog-card-image img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+}
+
+.blog-card-body {
+  padding: 16px 16px 18px;
+}
+
+.blog-card-body h2 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #fdfdff;
+}
+
+.blog-tags {
+  margin-bottom: 8px;
+}
+
+.blog-tags span {
+  display: inline-block;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.1);
+  margin-right: 6px;
+}
+
+.blog-summary {
+  font-size: 14px;
+  color: #dcdcff;
+  line-height: 1.5;
+}
+
+.no-blogs {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #ccc;
+}
+
+@media (max-width: 768px) {
+  .blogs-controls input {
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 16px;
+    border-radius: 999px;
+  }
+}

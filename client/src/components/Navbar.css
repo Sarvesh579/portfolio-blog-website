@@ -1,0 +1,150 @@
+/* ------------------- BASE NAVBAR ------------------- */
+
+.navbar {
+  position: fixed;
+  top: 16px;
+  left: 50px;
+  right: 50px;
+  z-index: 9999;
+
+  background: rgba(30, 15, 60, 0.9);
+  backdrop-filter: blur(12px);
+
+  padding: 12px 15px;
+  border-radius: 50px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-brand {
+  font-size: 20px;
+  font-weight: 600;
+  color: lavender;
+  margin-left: 20px;
+}
+
+/* Desktop links */
+.nav-links {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.nav-links a {
+  position: relative;
+  text-decoration: none;
+  color: lavender;
+  transition: 0.2s;
+  padding: 6px 14px;
+  border-radius: 50px;
+}
+
+.nav-links a:hover {
+  color: orange;
+}
+
+/* Active underline */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 2px;
+  height: 2px;
+  background: lavender;
+  transform: scaleX(0);
+  transition: 0.2s ease;
+}
+
+.nav-links a.active::after {
+  transform: scaleX(1);
+}
+
+/* Contact Button */
+.contact-btn {
+  background: transparent;
+  border: 1px solid orange;
+  color: orange;
+  padding: 6px 14px;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.contact-btn:hover {
+  background: orange;
+  color: black;
+}
+
+/* ------------------- HAMBURGER ------------------- */
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 22px;
+  height: 2px;
+  background: lavender;
+  transition: 0.3s;
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ------------------- MOBILE MENU ------------------- */
+
+@media (max-width: 768px) {
+
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+    background: rgba(30, 15, 60, 0.95);
+    padding: 16px;
+    border-radius: 16px;
+
+    transform-origin: top center;
+    transform: scaleY(0);
+    transition: transform 0.2s ease;
+
+    z-index: 9999;
+  }
+
+  .nav-links.open {
+    transform: scaleY(1);
+  }
+
+  .nav-links a,
+  .contact-btn {
+    margin: 0;
+    padding: 10px 14px;
+  }
+
+  .nav-brand {
+    margin-left: 0;
+  }
+}

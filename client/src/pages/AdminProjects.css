@@ -1,0 +1,139 @@
+.admin-projects {
+  padding: 40px;
+  min-height: calc(100vh - 80px);
+  color: #fff;
+}
+
+.back-btn {
+  display: inline-block;
+  color: #aaa;
+  margin-bottom: 20px;
+  text-decoration: none;
+}
+
+.projects-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-btn {
+  background: orange;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #000;
+}
+
+.projects-list {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.project-row {
+  background: rgba(255,255,255,0.06);
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.project-card-admin {
+  background: rgba(255,255,255,0.08);
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  color: lavender;
+}
+
+.admin-image-list img {
+  width: 140px;
+  border-radius: 8px;
+  margin-right: 10px;
+}
+
+
+.p-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.p-actions button {
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+}
+
+.edit-btn {
+  background: #66a6ff;
+  color: #000;
+}
+
+.delete-btn {
+  background: #ff6666;
+  color: #000;
+}
+
+/* Form modal */
+.modal-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  width: 420px;
+  background: #111;
+  padding: 20px;
+  border-radius: 12px;
+  position: relative;
+}
+
+.modal h2 {
+  margin-bottom: 14px;
+}
+
+.modal input,
+.modal textarea {
+  width: calc(100% - 22px);
+  padding: 10px;
+  background: #222;
+  color: #fff;
+  border-radius: 8px;
+  border: 1px solid #444;
+  margin-bottom: 12px;
+}
+
+.modal button {
+  background: orange;
+  padding: 10px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #000;
+}
+
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  padding: 5px;
+  font-size: 12px;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.modal button:hover {
+  background: lavender;
+  color: #000;
+}

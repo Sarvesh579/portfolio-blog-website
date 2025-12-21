@@ -1,0 +1,133 @@
+.blog-detail-page {
+  padding-top: 140px;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(128, 70, 255, 0.18), transparent 35%),
+    radial-gradient(circle at 85% 70%, rgba(255, 140, 0, 0.18), transparent 40%),
+    linear-gradient(120deg, #06000f, #0d0622, #06000f);
+  color: lavender;
+}
+
+.blog-detail-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px 60px;
+}
+
+/* Back button */
+.back-btn {
+  margin-bottom: 16px;
+  background: transparent;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.4);
+  color: lavender;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.back-btn:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+/* Title */
+.blog-title {
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+/* Tags */
+.blog-detail-tags {
+  margin-bottom: 6px;
+}
+
+.blog-detail-tags span {
+  display: inline-block;
+  font-size: 12px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.1);
+  margin-right: 6px;
+}
+
+/* Date */
+.blog-date {
+  font-size: 13px;
+  color: #c0c0ff;
+  margin-bottom: 20px;
+}
+
+/* Markdown content */
+.blog-markdown {
+  font-size: 16px;
+  line-height: 1.75;
+  color: #e6e6ff;
+}
+
+/* Markdown elements */
+.blog-markdown h1,
+.blog-markdown h2,
+.blog-markdown h3 {
+  color: #ffffff;
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+
+.blog-markdown p {
+  margin-bottom: 12px;
+}
+
+.blog-markdown a {
+  color: orange;
+}
+
+.blog-markdown ul,
+.blog-markdown ol {
+  margin-left: 20px;
+  margin-bottom: 12px;
+}
+
+.blog-markdown code {
+  background: rgba(255,255,255,0.08);
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+/* Inline images: constrained to text width */
+.blog-markdown img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 16px auto;
+  border-radius: 8px;
+}
+/* ------------------------------------------
+   Image wrapping (PC)
+------------------------------------------- */
+.blog-detail img {
+  float: right;
+  width: 35%;
+  max-width: 350px;
+  margin: 12px 0 12px 24px;
+  border-radius: 12px;
+}
+
+/* Text styling */
+.blog-detail p {
+  line-height: 1.75;
+  font-size: 18px;
+  color: lavender;
+}
+
+/* ------------------------------------------
+   Mobile: images become full-width
+------------------------------------------- */
+@media (max-width: 768px) {
+  .blog-detail img {
+    float: none;
+    width: 100%;
+    max-width: 100%;
+    margin: 20px 0;
+  }
+}
