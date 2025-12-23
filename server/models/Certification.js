@@ -5,7 +5,10 @@ const CertificationSchema = new mongoose.Schema({
   issuer: { type: String },
   date: { type: String },
   image: { type: String }, // certificate image
-  description: { type: String }
+  fileType: { type: String, enum: ["pdf", "image"] },
+  credentialId: { type: String },
+  credentialUrl: { type: String },
+  importance: { type: Number, default: 0 }
 }, { timestamps: true });
 
 export default mongoose.model("Certification", CertificationSchema);

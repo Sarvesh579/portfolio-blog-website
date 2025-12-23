@@ -6,7 +6,8 @@ const ProjectSchema = new mongoose.Schema({
   description: { type: String },
   images: { type: [String], default: [] }, // URLs
   github: { type: String },
-  live: { type: String }
+  live: { type: String },
+  importance: { type: Number, default: 0 }
 }, { timestamps: true });
 
 export default mongoose.model("Project", ProjectSchema);

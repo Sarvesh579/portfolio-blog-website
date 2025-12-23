@@ -3,7 +3,7 @@ import Project from "../models/Project.js";
 // GET all projects
 export const getProjects = async (req, res) => {
   try {
-    const projects = await Project.find().sort({ createdAt: -1 });
+    const projects = await Project.find().sort({ importance: -1 });
     res.json(projects);
   } catch (err) {
     res.status(500).json({ error: err.message });

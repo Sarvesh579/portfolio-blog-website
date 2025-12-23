@@ -1,6 +1,19 @@
 import { useState, useEffect } from "react";
 import "./Works.css";
 
+function formatDate(dateStr) {
+  if (!dateStr) return "";
+  const d = new Date(dateStr);
+  if (isNaN(d)) return dateStr;
+
+  const day = String(d.getDate()).padStart(2, "0");
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const year = d.getFullYear();
+
+  return `${day}-${month}-${year}`;
+}
+
+
 export default function Works() {
   const [tab, setTab] = useState("projects");
   const [projects, setProjects] = useState([]);
@@ -15,7 +28,7 @@ export default function Works() {
         setProjects(p);
         setCerts(c);
       } catch (err) {
-        console.log("Error fetching:", err);
+        console.error("Error fetching:", err);
       }
     }
     fetchData();
@@ -23,7 +36,6 @@ export default function Works() {
 
   return (
     <div className="works-page">
-
       <div className="animated-bg">
         <span className="shape s1"></span>
         <span className="shape s2"></span>
@@ -64,38 +76,21 @@ export default function Works() {
 }
 
 /* ============================================================
-   PROJECTS ACCORDION
+   PROJECTS ACCORDION (CLEANED)
 ============================================================ */
 function ProjectsAccordion({ data }) {
   const [openId, setOpenId] = useState(null);
 
-  const handleToggle = (id) => {
-    if (openId === id) {
-      setOpenId(null);
-      return;
-    }
-
-    // Phase 1: open the new card immediately
-    setOpenId(id);
-
-    // Phase 2: close previous card in the next frame
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        setOpenId(id);
-      });
-    });
-  };
-
   return (
     <div className="cards-container">
-      {data.map((p, i) => {
+      {data.map(p => {
         const open = openId === p._id;
 
         return (
           <div
             key={p._id}
             className={`card show-card ${open ? "open" : ""}`}
-            onClick = {() => handleToggle(p._id)}
+            onClick={() => setOpenId(open ? null : p._id)}
           >
             <h3>{p.title}</h3>
 
@@ -104,31 +99,34 @@ function ProjectsAccordion({ data }) {
                 <span key={t}>{t}</span>
               ))}
             </div>
+
             <div className="accordion-body">
-              <p>{p.description}</p>
+              <div className="accordion-inner">
+                <p>{p.description}</p>
 
-              <div className="project-links">
-                {p.github && (
-                  <a
-                    href={p.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={e => e.stopPropagation()}
-                  >
-                    GitHub
-                  </a>
-                )}
+                <div className="project-links">
+                  {p.github && (
+                    <a
+                      href={p.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={e => e.stopPropagation()}
+                    >
+                      GitHub
+                    </a>
+                  )}
 
-                {p.live && (
-                  <a
-                    href={p.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={e => e.stopPropagation()}
-                  >
-                    Live Demo
-                  </a>
-                )}
+                  {p.live && (
+                    <a
+                      href={p.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={e => e.stopPropagation()}
+                    >
+                      Live Demo
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -139,7 +137,7 @@ function ProjectsAccordion({ data }) {
 }
 
 /* ============================================================
-   CERTIFICATIONS ACCORDION
+   CERTIFICATIONS ACCORDION (FIXED)
 ============================================================ */
 function CertsAccordion({ data }) {
   const [openId, setOpenId] = useState(null);
@@ -158,22 +156,66 @@ function CertsAccordion({ data }) {
             <h3>{c.title}</h3>
 
             <div className="issuer">
-              {c.issuer} — {c.date}
+              <strong>Issuer:</strong> {c.issuer}
             </div>
 
-            {open && (
-              <div className="accordion-body">
-                <p>{c.details}</p>
+            <div className="accordion-body">
+              <div className="accordion-inner">
+                {c.date && (
+                  <p className="cert-meta">
+                    <strong>Date:</strong> {formatDate(c.date)}
+                  </p>
+                )}
 
-                {c.certificateImage && (
-                  <img
-                    src={c.certificateImage}
-                    alt=""
-                    className="cert-image"
-                  />
+                {c.credentialId && (
+                  <p className="cert-meta">
+                    <strong>Credential ID:</strong> {c.credentialId}
+                  </p>
+                )}
+
+                {c.credentialUrl && (
+                  <p className="cert-meta">
+                    <strong>Verify:</strong>{" "}
+                    <a
+                      href={c.credentialUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={e => e.stopPropagation()}
+                    >
+                      View Credential
+                    </a>
+                  </p>
+                )}
+
+                {c.image && (
+                  <div className="cert-preview-row">
+                    <div className="cert-preview-text">
+                      <strong>Certificate:</strong>{" "}
+                      <a
+                        href={c.image}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={e => e.stopPropagation()}
+                      >
+                        View Certificate ({c.fileType === "pdf" ? "PDF" : "IMAGE"})
+                      </a>
+                    </div>
+
+                    <div className="cert-preview-thumb">
+                      {c.fileType === "pdf" ? (
+                        <div className="pdf-thumb">PDF</div>
+                      ) : (
+                        <img
+                          src={c.image}
+                          alt={`${c.title} certificate`}
+                          onClick={e => e.stopPropagation()}
+                        />
+                      )}
+                    </div>
+                  </div>
                 )}
               </div>
-            )}
+            </div>
           </div>
         );
       })}

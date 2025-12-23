@@ -1,0 +1,207 @@
+/* ------------------------------------------------------
+   PAGE
+------------------------------------------------------ */
+.admin-certs {
+  padding: 40px;
+  min-height: calc(100vh - 80px);
+  color: #fff;
+}
+
+/* Back button */
+.back-btn {
+  display: inline-block;
+  color: #aaa;
+  margin-bottom: 20px;
+  text-decoration: none;
+}
+
+/* ------------------------------------------------------
+   HEADER
+------------------------------------------------------ */
+.certs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Add button */
+.add-btn {
+  background: orange;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #000;
+}
+
+/* ------------------------------------------------------
+   LIST
+------------------------------------------------------ */
+.certs-list {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Card */
+.cert-card-admin {
+  background: rgba(255,255,255,0.08);
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  color: lavender;
+}
+
+.cert-card-admin h2 {
+  margin-bottom: 10px;
+}
+
+.cert-card-admin p {
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+/* Certificate preview */
+.cert-preview {
+  width: 160px;
+  margin-top: 10px;
+  border-radius: 8px;
+}
+
+.cert-card-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.cert-text {
+  flex: 1;
+}
+
+.cert-thumb {
+  width: 120px;
+  flex-shrink: 0;
+}
+
+.cert-thumb img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.pdf-thumb {
+  width: 100%;
+  height: 160px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: orange;
+}
+
+
+/* ------------------------------------------------------
+   ACTIONS
+------------------------------------------------------ */
+.admin-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.admin-actions button {
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  font-weight: 500;
+}
+
+.admin-actions button:first-child {
+  background: #66a6ff;
+  color: #000;
+}
+
+.admin-actions button:last-child {
+  background: #ff6666;
+  color: #000;
+}
+
+/* ------------------------------------------------------
+   MODAL
+------------------------------------------------------ */
+.modal-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  width: 420px;
+  max-width: 90%;
+  background: #111;
+  padding: 20px;
+  border-radius: 12px;
+  position: relative;
+}
+
+.modal h2 {
+  margin-bottom: 14px;
+}
+
+/* Inputs */
+.modal input,
+.modal textarea,
+.modal select {
+  width: calc(100% - 22px);
+  padding: 10px;
+  background: #222;
+  color: #fff;
+  border-radius: 8px;
+  border: 1px solid #444;
+  margin-bottom: 12px;
+}
+
+/* Submit button */
+.modal button {
+  background: orange;
+  padding: 10px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #000;
+  border: none;
+}
+
+.modal button:hover {
+  background: lavender;
+  color: #000;
+}
+
+/* Close button */
+.modal-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  padding: 5px;
+  font-size: 12px;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.form-row {
+  display: flex;
+  gap: 12px;
+}
+
+.form-row input,
+.form-row select {
+  width: 50%;
+}

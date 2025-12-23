@@ -78,7 +78,7 @@ export default function App() {
           />
 
           <Route
-            path="/admin/certifications"
+            path="/admin/certificates"
             element={
               <ProtectedRoute>
                 <AdminCerts />

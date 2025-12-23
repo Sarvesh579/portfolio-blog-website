@@ -119,7 +119,7 @@
    CARDS CONTAINER
 ------------------------------------------------------ */
 .cards-container {
-  max-width: 900px;
+  max-width: 768px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -158,6 +158,32 @@
   background: rgba(255,255,255,0.09);
 }
 
+.cert-preview-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.cert-preview-text {
+  flex: 1;
+}
+
+.cert-preview-thumb {
+  width: 100px;
+  flex-shrink: 0;
+}
+
+.cert-preview-thumb img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.cert-preview-thumb .pdf-thumb {
+  height: 140px;
+}
+
+
 /* ------------------------------------------------------
    TECH TAGS
 ------------------------------------------------------ */
@@ -190,7 +216,7 @@
   will-change: grid-template-rows, opacity, transform;
 }
 
-.accordion-body > * {
+.accordion-inner {
   overflow: hidden;
 }
 
@@ -223,4 +249,36 @@
   margin-top: 12px;
   width: 100%;
   border-radius: 10px;
+}
+
+.cert-meta {
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.cert-meta a {
+  color: orange;
+  text-decoration: none;
+}
+
+.cert-meta a:hover {
+  text-decoration: underline;
+}
+
+
+@media (max-width: 768px) {
+  .works-page {
+    padding-top: 100px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .toggle-slider {
+    width: 240px;
+    height: 40px;
+  }
+
+  .slider.certifications {
+    transform: translateX(120px);
+  }
 }
