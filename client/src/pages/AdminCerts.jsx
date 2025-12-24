@@ -25,7 +25,7 @@ export default function AdminCerts() {
     date: "",
     description: "",
     fileUrl: "",
-    fileType: "image",
+    fileType: "pdf",
     importance: 0
   });
 
@@ -65,7 +65,7 @@ export default function AdminCerts() {
       credentialId: c.credentialId || "",
       credentialUrl: c.credentialUrl || "",
       fileUrl: c.fileUrl || c.image || "",
-      fileType: c.fileType || "image",
+      fileType: c.fileType || (c.image?.toLowerCase().endsWith(".pdf") ? "pdf" : "image"),
       importance: c.importance ?? 0
     });
     setModalOpen(true);

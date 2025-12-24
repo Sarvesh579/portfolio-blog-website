@@ -89,11 +89,11 @@ export default function AdminDashboard() {
 
         <div
           className="admin-card"
-          onClick={() => navigate("/admin/certifications")}
+          onClick={() => navigate("/admin/certificates")}
         >
-          <h2>Certificates</h2>
+          <h2>Certifications</h2>
           <p className="stat-number">{stats.certificates}</p>
-          <span className="stat-label">Total Certificates</span>
+          <span className="stat-label">Total Certifications</span>
         </div>
 
       </div>
