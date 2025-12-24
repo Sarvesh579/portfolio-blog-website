@@ -13,6 +13,10 @@ export default function BlogDetail() {
     async function fetchBlog() {
       try {
         const res = await fetch(`http://localhost:4000/api/blogs/${id}`);
+        if (!res.ok) {
+          navigate("/blogs");
+          return;
+        }
         const data = await res.json();
         setBlog(data);
       } catch (err) {
@@ -40,6 +44,12 @@ export default function BlogDetail() {
         </button>
 
         <h1 className="blog-title">{blog.title}</h1>
+
+        {blog.blogId && (
+          <div className="blog-id">
+            Blog ID: {blog.blogId}
+          </div>
+        )}
 
         {blog.tags && blog.tags.length > 0 && (
           <div className="blog-detail-tags">

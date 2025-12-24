@@ -6,12 +6,12 @@ export default function Blogs() {
   const [blogs, setBlogs] = useState([]);
   const [search, setSearch] = useState("");
   const [tagFilter, setTagFilter] = useState("all");
-  const [dropdownOpen, setDropdownOpen] = useState("closed"); // "closed" | "open" | "closing"
+  const [dropdownOpen, setDropdownOpen] = useState("closed"); // closed | open | closing
 
   const navigate = useNavigate();
 
   /* -------------------------------------------------------
-     FETCH BLOGS
+     FETCH BLOGS (PUBLIC – PUBLISHED ONLY)
   ------------------------------------------------------- */
   useEffect(() => {
     async function fetchBlogs() {
@@ -92,7 +92,7 @@ export default function Blogs() {
             onChange={(e) => setSearch(e.target.value)}
           />
 
-          {/* Custom Dropdown */}
+          {/* TAG DROPDOWN */}
           <div className="dropdown">
             <div
               className="dropdown-selected"
@@ -115,37 +115,40 @@ export default function Blogs() {
                   dropdownOpen === "closing" ? "close" : ""
                 }`}
               >
-                <div
-                  className="dropdown-item"
-                  onClick={() => {
-                    setTagFilter("all");
-                    setDropdownOpen("closing");
-                    setTimeout(() => setDropdownOpen("closed"), 180);
-                  }}
-                >
-                  All topics
-                </div>
-
-                {allTags.map((tag) => (
+                {/* ✅ SCROLL FIX */}
+                <div className="dropdown-scroll">
                   <div
-                    key={tag}
                     className="dropdown-item"
                     onClick={() => {
-                      setTagFilter(tag);
+                      setTagFilter("all");
                       setDropdownOpen("closing");
                       setTimeout(() => setDropdownOpen("closed"), 180);
                     }}
                   >
-                    {tag}
+                    All topics
                   </div>
-                ))}
+
+                  {allTags.map((tag) => (
+                    <div
+                      key={tag}
+                      className="dropdown-item"
+                      onClick={() => {
+                        setTagFilter(tag);
+                        setDropdownOpen("closing");
+                        setTimeout(() => setDropdownOpen("closed"), 180);
+                      }}
+                    >
+                      {tag}
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
           </div>
         </div>
       </section>
 
-      {/* Blog Grid */}
+      {/* BLOG GRID */}
       <section className="blogs-grid">
         {filteredBlogs.map((blog) => (
           <article
@@ -180,7 +183,9 @@ export default function Blogs() {
         ))}
 
         {filteredBlogs.length === 0 && (
-          <div className="no-blogs">No blogs found. Try different keywords.</div>
+          <div className="no-blogs">
+            No blogs found. Try different keywords.
+          </div>
         )}
       </section>
     </div>

@@ -1,0 +1,157 @@
+.admin-blog-editor {
+  padding: 40px;
+  min-height: calc(100vh - 80px);
+  color: #fff;
+}
+
+.admin-blog-editor h1 {
+  margin-bottom: 20px;
+}
+
+.blog-id {
+  margin-bottom: 12px;
+  color: #aaa;
+  font-size: 14px;
+}
+
+
+.editor-section {
+  margin-bottom: 20px;
+}
+
+.editor-row label,
+.editor-section label {
+  display: block;
+  margin-bottom: 7px;
+  color: #ccc;
+}
+
+.editor-section input,
+.editor-section textarea {
+  width: calc(100% - 20px);
+  padding: 10px;
+  background: #222;
+  color: #fff;
+  border-radius: 8px;
+  border: 1px solid #444;
+  margin-bottom: 12px;
+}
+
+/* ===============================
+   META ROW (DATE / IMPORTANCE / PUBLISH)
+================================ */
+.editor-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+/* Each field block */
+.editor-row > div {
+  flex: 1;
+  display: flex;
+  flex-direction: row; /* DESKTOP: label above input */
+}
+
+/* Labels */
+.editor-row label {
+  color: #ccc;
+  margin: 2px 0 auto 0;
+}
+
+/* Inputs */
+.editor-row input[type="date"],
+.editor-row input[type="number"] {
+  padding: 5px 10px;
+  margin-left: 5px;
+  background: #222;
+  border: 1px solid #444;
+  border-radius: 100px;
+  color: #fff;
+}
+
+/* Publish toggle ALWAYS inline */
+.publish-toggle {
+  flex-direction: row !important;
+  align-items: center;
+  gap: 8px;
+}
+
+.publish-toggle label {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.markdown-editor {
+  min-height: 300px;
+  resize: vertical;
+}
+
+.editor-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.save-btn {
+  background: orange;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  color: #000;
+}
+
+.cancel-btn {
+  background: #444;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+}
+
+.save-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+/* MOBILE BEHAVIOR */
+@media (max-width: 768px) {
+  .admin-blog-editor {
+    padding: 20px;
+  }
+
+  .editor-section input, 
+  .editor-section textarea {
+    max-width: calc(100% - 20px);
+  }
+
+  .editor-row {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .editor-row > div {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .editor-row label {
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+
+  .editor-row input[type="date"],
+  .editor-row input[type="number"] {
+    width: 55%;
+  }
+
+  .publish-toggle {
+    justify-content: flex-start;
+  }
+}

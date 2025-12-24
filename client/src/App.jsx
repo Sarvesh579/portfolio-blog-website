@@ -12,6 +12,7 @@ import BlogDetail from "./pages/BlogDetail";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminBlogs from "./pages/AdminBlogs";
+import AdminBlogEditor from "./pages/AdminBlogEditor";
 import AdminProjects from "./pages/AdminProjects";
 import AdminCerts from "./pages/AdminCerts";
 
@@ -64,6 +65,24 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <AdminBlogs />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/admin/blogs/new"
+            element={
+              <ProtectedRoute>
+                <AdminBlogEditor />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/admin/blogs/edit/:id"
+            element={
+              <ProtectedRoute>
+                <AdminBlogEditor />
               </ProtectedRoute>
             }
           />

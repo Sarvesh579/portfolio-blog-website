@@ -8,6 +8,7 @@ import blogRoutes from "./routes/blogRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import projectRoutes from "./routes/projectRoutes.js";
 import certificationRoutes from "./routes/certificationRoutes.js";
+import adminBlogRoutes from "./routes/adminBlogRoutes.js";
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(cors({
 app.use(express.json());
 app.use("/api/blogs", blogRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api/admin/blogs", adminBlogRoutes); 
 app.use("/api/projects", projectRoutes);
 app.use("/api/certifications", certificationRoutes);
 
