@@ -160,17 +160,6 @@ export default function AdminCerts() {
                   </p>
                 )}
               </div>
-
-              {/* RIGHT: preview */}
-              {c.image && (
-                <div className="cert-thumb">
-                  {c.fileType === "pdf" ? (
-                    <div className="pdf-thumb">PDF</div>
-                  ) : (
-                    <img src={c.image} alt="" />
-                  )}
-                </div>
-              )}
             </div>
 
             <div className="admin-actions">

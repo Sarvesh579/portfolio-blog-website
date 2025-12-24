@@ -115,6 +115,16 @@
   box-shadow: none !important;
 }
 
+.loading-box {
+  font-family: monospace;
+  margin-top: 80px;
+  text-align: center;
+  font-size: 18px;
+  color: lavender;
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
+
 /* ------------------------------------------------------
    CARDS CONTAINER
 ------------------------------------------------------ */
@@ -168,21 +178,6 @@
 .cert-preview-text {
   flex: 1;
 }
-
-.cert-preview-thumb {
-  width: 100px;
-  flex-shrink: 0;
-}
-
-.cert-preview-thumb img {
-  width: 100%;
-  border-radius: 8px;
-}
-
-.cert-preview-thumb .pdf-thumb {
-  height: 140px;
-}
-
 
 /* ------------------------------------------------------
    TECH TAGS

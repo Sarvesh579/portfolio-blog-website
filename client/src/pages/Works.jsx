@@ -13,24 +13,34 @@ function formatDate(dateStr) {
   return `${day}-${month}-${year}`;
 }
 
-
 export default function Works() {
   const [tab, setTab] = useState("projects");
   const [projects, setProjects] = useState([]);
   const [certs, setCerts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const p = await fetch("http://localhost:4000/api/projects").then(res => res.json());
-        const c = await fetch("http://localhost:4000/api/certifications").then(res => res.json());
+        setLoading(true);
+
+        const [pRes, cRes] = await Promise.all([
+          fetch("http://localhost:4000/api/projects"),
+          fetch("http://localhost:4000/api/certifications")
+        ]);
+
+        const p = await pRes.json();
+        const c = await cRes.json();
 
         setProjects(p);
         setCerts(c);
       } catch (err) {
         console.error("Error fetching:", err);
+      } finally {
+        setLoading(false);
       }
     }
+
     fetchData();
   }, []);
 
@@ -65,7 +75,9 @@ export default function Works() {
       </div>
 
       <div className="works-content">
-        {tab === "projects" ? (
+        {loading ? (
+          <LoadingIndicator />
+        ) : tab === "projects" ? (
           <ProjectsAccordion data={projects} />
         ) : (
           <CertsAccordion data={certs} />
@@ -188,37 +200,42 @@ function CertsAccordion({ data }) {
                 )}
 
                 {c.image && (
-                  <div className="cert-preview-row">
-                    <div className="cert-preview-text">
-                      <strong>Certificate:</strong>{" "}
-                      <a
-                        href={c.image}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={e => e.stopPropagation()}
-                      >
-                        View Certificate ({c.fileType === "pdf" ? "PDF" : "IMAGE"})
-                      </a>
-                    </div>
-
-                    <div className="cert-preview-thumb">
-                      {c.fileType === "pdf" ? (
-                        <div className="pdf-thumb">PDF</div>
-                      ) : (
-                        <img
-                          src={c.image}
-                          alt={`${c.title} certificate`}
-                          onClick={e => e.stopPropagation()}
-                        />
-                      )}
-                    </div>
-                  </div>
+                  <p className="cert-meta">
+                    <strong>Certificate:</strong>{" "}
+                    <a
+                      href={c.image}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={e => e.stopPropagation()}
+                    >
+                      View Certificate ({c.fileType === "pdf" ? "PDF" : "IMAGE"})
+                    </a>
+                  </p>
                 )}
+
               </div>
             </div>
           </div>
         );
       })}
+    </div>
+  );
+}
+
+function LoadingIndicator() {
+  const [dots, setDots] = useState("");
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDots(prev => (prev.length === 3 ? "" : prev + "."));
+    }, 400);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="loading-box">
+      <span>Fetching data{dots}</span>
     </div>
   );
 }
