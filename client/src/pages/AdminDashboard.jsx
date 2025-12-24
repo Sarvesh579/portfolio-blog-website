@@ -11,14 +11,17 @@ export default function AdminDashboard() {
     certificates: 0,
   });
 
+  /* -------------------------------------------------------
+     FETCH DASHBOARD STATS (COOKIE AUTH)
+  ------------------------------------------------------- */
   useEffect(() => {
     async function fetchStats() {
       try {
         const res = await fetch("http://localhost:4000/api/admin/stats", {
-          headers: {
-            Authorization: "Bearer " + localStorage.getItem("adminToken"),
-          },
+          credentials: "include", // ✅ cookie-based auth
         });
+
+        if (!res.ok) throw new Error("Unauthorized");
 
         const data = await res.json();
         setStats(data);
@@ -26,31 +29,44 @@ export default function AdminDashboard() {
         console.error("Stats fetch error:", err);
       }
     }
+
     fetchStats();
   }, []);
 
-  function handleLogout() {
-    localStorage.removeItem("adminToken");
+  /* -------------------------------------------------------
+     LOGOUT
+  ------------------------------------------------------- */
+  async function handleLogout() {
+    try {
+      await fetch("http://localhost:4000/api/admin/logout", {
+        method: "POST",
+        credentials: "include",
+      });
+    } catch (err) {
+      console.error("Logout error:", err);
+    }
+
     navigate("/admin/login");
   }
 
   return (
     <div className="admin-dashboard">
 
-      {/* Top bar with logout button on RIGHT */}
+      {/* Top bar */}
       <div className="admin-top-bar">
         <button className="logout-btn" onClick={handleLogout}>
           Logout
         </button>
       </div>
 
-      {/* Centered main title */}
+      {/* Title */}
       <h1 className="admin-title-main">Admin Dashboard</h1>
 
       <p className="admin-desc">
         Overview of your content. Click any section to manage it.
       </p>
 
+      {/* Stats */}
       <div className="admin-stats-grid">
 
         <div
@@ -73,7 +89,7 @@ export default function AdminDashboard() {
 
         <div
           className="admin-card"
-          onClick={() => navigate("/admin/certificates")}
+          onClick={() => navigate("/admin/certifications")}
         >
           <h2>Certificates</h2>
           <p className="stat-number">{stats.certificates}</p>

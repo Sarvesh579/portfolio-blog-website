@@ -15,7 +15,9 @@ export default function AdminBlogs() {
   ------------------------------------------------------- */
   async function fetchBlogs() {
     try {
-      const res = await fetch("http://localhost:4000/api/blogs/admin/all");
+      const res = await fetch("http://localhost:4000/api/blogs/admin/all", {
+        credentials: "include",
+      });
       const data = await res.json();
       setBlogs(data);
     } catch (err) {
@@ -36,6 +38,7 @@ export default function AdminBlogs() {
     try {
       await fetch(`http://localhost:4000/api/blogs/${id}`, {
         method: "DELETE",
+        credentials: "include"
       });
       fetchBlogs();
     } catch (err) {

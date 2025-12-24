@@ -45,7 +45,8 @@ export default function AdminBlogEditor() {
     async function fetchBlog() {
       try {
         const res = await fetch(
-          `http://localhost:4000/api/blogs/${id}`
+          `http://localhost:4000/api/blogs/${id}`,
+          { credentials: "include" }
         );
 
         if (!res.ok) {
@@ -104,12 +105,14 @@ export default function AdminBlogEditor() {
         await fetch(`http://localhost:4000/api/blogs/${id}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
+          credentials: "include",
           body: JSON.stringify(payload),
         });
       } else {
         await fetch("http://localhost:4000/api/blogs", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
+          credentials: "include",
           body: JSON.stringify(payload),
         });
       }

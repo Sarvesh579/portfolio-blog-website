@@ -9,25 +9,23 @@ export default function AdminLogin() {
   const navigate = useNavigate();
 
   async function handleLogin(e) {
-    e.preventDefault(); // prevents default form reload
+    e.preventDefault();
     setError("");
 
     try {
       const res = await fetch("http://localhost:4000/api/admin/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "include",
         body: JSON.stringify({ username, password })
       });
 
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.error || "Invalid login");
+        setError(data.error || "Login failed");
         return;
       }
-
-      // store auth token
-      localStorage.setItem("adminToken", data.token);
 
       navigate("/admin/dashboard");
     } catch (err) {
@@ -40,9 +38,7 @@ export default function AdminLogin() {
     <div className="admin-login">
       <h1>Admin Login</h1>
 
-      {/* ENTER KEY ONLY WORKS IF FORM WRAPS INPUTS + BUTTON */}
       <form onSubmit={handleLogin}>
-
         <input
           type="text"
           placeholder="Username"

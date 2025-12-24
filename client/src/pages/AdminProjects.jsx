@@ -17,7 +17,9 @@ export default function AdminProjects() {
   });
 
   async function fetchProjects() {
-    const res = await fetch("http://localhost:4000/api/projects");
+    const res = await fetch("http://localhost:4000/api/projects", {
+      credentials: "include",
+    });
     const data = await res.json();
     setProjects(data);
   }
@@ -67,12 +69,14 @@ export default function AdminProjects() {
         await fetch(`http://localhost:4000/api/projects/${editing}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
+          credentials: "include",
           body: JSON.stringify(payload)
         });
       } else {
         await fetch("http://localhost:4000/api/projects", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
+          credentials: "include",
           body: JSON.stringify(payload)
         });
       }
@@ -88,7 +92,8 @@ export default function AdminProjects() {
     if (!confirm("Delete this project?")) return;
 
     const res = await fetch(`http://localhost:4000/api/projects/${id}`, {
-      method: "DELETE"
+      method: "DELETE",
+      credentials: "include"
     });
 
     if (!res.ok) {

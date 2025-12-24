@@ -1,11 +1,10 @@
 import express from "express";
+import requireAdmin from "../middleware/requireAdmin.js";
 import Blog from "../models/Blog.js";
 
 const router = express.Router();
+router.use(requireAdmin);
 
-/* -----------------------------------------------------
-   ADMIN: GET ALL BLOGS (including drafts)
------------------------------------------------------ */
 router.get("/", async (req, res) => {
   try {
     const blogs = await Blog.find({})
@@ -18,9 +17,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-/* -----------------------------------------------------
-   ADMIN: GET BLOG BY ID (draft or published)
------------------------------------------------------ */
 router.get("/:id", async (req, res) => {
   try {
     const blog = await Blog.findById(req.params.id).lean();
@@ -32,9 +28,6 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-/* -----------------------------------------------------
-   ADMIN: CREATE BLOG
------------------------------------------------------ */
 router.post("/", async (req, res) => {
   try {
     const blog = new Blog(req.body);
@@ -45,9 +38,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-/* -----------------------------------------------------
-   ADMIN: UPDATE BLOG
------------------------------------------------------ */
 router.put("/:id", async (req, res) => {
   try {
     const blog = await Blog.findByIdAndUpdate(
@@ -61,9 +51,6 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-/* -----------------------------------------------------
-   ADMIN: DELETE BLOG
------------------------------------------------------ */
 router.delete("/:id", async (req, res) => {
   try {
     await Blog.findByIdAndDelete(req.params.id);

@@ -1,40 +1,79 @@
 import dotenv from "dotenv";
-dotenv.config();   // ✅ MUST be before mongoose.connect()
+dotenv.config(); // ✅ MUST be before anything else
 
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
+import cookieParser from "cookie-parser";
+
+/* ---------------- ROUTES ---------------- */
 import blogRoutes from "./routes/blogRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
+import adminBlogRoutes from "./routes/adminBlogRoutes.js";
 import projectRoutes from "./routes/projectRoutes.js";
 import certificationRoutes from "./routes/certificationRoutes.js";
-import adminBlogRoutes from "./routes/adminBlogRoutes.js";
 
+/* ---------------- APP ---------------- */
 const app = express();
 
-app.use(cors({
-  origin: "http://localhost:5173",
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true
-}));
+/* ---------------- MIDDLEWARE ---------------- */
+
+/**
+ * CORS
+ * - credentials: true → cookies allowed
+ * - origin must be explicit (not "*")
+ */
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 app.use(express.json());
+
+app.use(cookieParser());
+
+/* ---------------- ROUTES ---------------- */
+
+/**
+ * PUBLIC ROUTES
+ */
 app.use("/api/blogs", blogRoutes);
-app.use("/api/admin", adminRoutes);
-app.use("/api/admin/blogs", adminBlogRoutes); 
 app.use("/api/projects", projectRoutes);
 app.use("/api/certifications", certificationRoutes);
 
+/**
+ * ADMIN ROUTES
+ * - /api/admin/login
+ * - /api/admin/logout
+ */
+app.use("/api/admin", adminRoutes);
+
+/**
+ * ADMIN BLOG CRUD (PROTECTED internally by requireAdmin)
+ * - GET    /api/admin/blogs
+ * - POST   /api/admin/blogs
+ * - PUT    /api/admin/blogs/:id
+ * - DELETE /api/admin/blogs/:id
+ */
+app.use("/api/admin/blogs", adminBlogRoutes);
+
+/* ---------------- HEALTH CHECK ---------------- */
+app.get("/", (req, res) => {
+  res.send("API running ✅");
+});
+
+/* ---------------- DB ---------------- */
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected ✅"))
-  .catch(err => console.error("Mongo error:", err));
+  .catch((err) => console.error("Mongo error:", err));
 
-app.get("/", (req, res) => {
-  res.send("API running");
-});
-
-app.listen(process.env.PORT || 4000, () => {
-  console.log("Server started on port 4000");
+/* ---------------- SERVER ---------------- */
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
+  console.log(`Server started on port ${PORT}`);
 });
