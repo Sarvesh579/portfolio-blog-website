@@ -30,7 +30,7 @@ function Navbar({ openContact }) {
         </NavLink>
 
         <NavLink to="/works" onClick={closeMenu}>
-          Works
+          My Works
         </NavLink>
 
         <NavLink to="/blogs" onClick={closeMenu}>

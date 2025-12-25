@@ -88,13 +88,63 @@ export default function About() {
             </h2>
 
             {/* Date */}
-            <div className="intro-date scramble" data-text="July 2005, Mumbai"></div>
+            <div className="intro-date scramble" data-text="Computer Engineer ● Mumbai"></div>
 
             {/* Paragraph */}
             <p  className="para-fade">
-              An engineering student passionate about UI/UX, Machine Learning, creativity, and digital experiences. With a blend of logic and imagination, I explore problem-solving, design, and building meaningful tech projects. Learning consistently is my motive.
+              I'm a student who enjoys building systems, from interactive frontends to scalable backends. I'm particularly interested in automation, fontend development, and applied Machine Learning. I care deeply about clean architecture, performance, and meaningful user experience.
             </p>
+          </div>
+        </div>
+      </section>
 
+      <section className="intro-bubbles">
+        <div className="bubble" id="bubble1">
+          <h4>Currently</h4>
+          <p>
+            Building full-stack applications, experimenting with ML pipelines,
+            and improving system design skills.
+          </p>
+        </div>
+
+        <div className="bubble" id="bubble2">
+          <h4>What I Build</h4>
+          <p>
+            Scalable web apps, automation tools, and data-driven systems.
+          </p>
+        </div>
+      </section>
+
+      {/* Skills */}
+      <section className="about-skills">
+        <h2>Technical Skills</h2>
+        <div className="skills-grid">
+          <div>
+            <h4>Languages</h4>
+            <span>C, C++</span>
+            <span>Python</span>
+            <span>Java</span>
+            <span>JavaScript</span>
+          </div>
+
+          <div>
+            <h4>Web</h4>
+            <span>MERN Stack</span>
+            <span>REST APIs</span>
+            <span>Design</span>
+          </div>
+
+          <div>
+            <h4>AI / Data</h4>
+            <span>Machine Learning</span>
+            <span>Data Analysis</span>
+            <span>Automation</span>
+          </div>
+
+          <div>
+            <h4>Foundations</h4>
+            <span>OOP</span>
+            <span>DSA</span>
           </div>
         </div>
       </section>
@@ -112,28 +162,13 @@ export default function About() {
         </div>
       </section>
 
-      {/* Skills */}
-      <section className="about-skills">
-        <h2>Skills</h2>
-        <div className="skills-grid">
-          <span>MERN Stack Development</span>
-          <span>C, C++</span>
-          <span>Java</span>
-          <span>Python</span>
-          <span>Large Data Analysis</span>
-          <span>Machine Learning</span>
-          <span>DSA</span>
-          <span>Machine Learning</span>
-        </div>
-      </section>
-
       {/* CTA */}
       <section className="about-cta">
         <a href="/resume.pdf" className="resume-btn" download>
-          Download Resume
+          Download Resume (PDF)
         </a>
         <Link to="/works" className="works-btn">
-          View My Works →
+          Explore Projects →
         </Link>
       </section>
 

@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-route
 import { useState } from "react";
 
 import Navbar from "./components/Navbar";
+import ScrollToTop from "./components/ScrollToTop";
 import ContactModal from "./components/ContactModal";
 
 import About from "./pages/About";
@@ -38,6 +39,7 @@ export default function App() {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Layout openContact={() => setShowContact(true)}>
         <Routes>
 
