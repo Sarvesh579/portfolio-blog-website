@@ -67,7 +67,43 @@ export default function BlogDetail() {
 
         {/* Markdown body */}
         <div className="blog-markdown">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            components={{
+              p({ node, children }) {
+                // If paragraph contains ONLY an image/figure → unwrap it
+                if (
+                  node.children &&
+                  node.children.length === 1 &&
+                  node.children[0].tagName === "img"
+                ) {
+                  return <>{children}</>;
+                }
+
+                return <p>{children}</p>;
+              },
+              img({ node, ...props }) {
+                const alt = props.alt || "";
+                const hasCaption = alt.includes("|");
+
+                let caption = "";
+                let cleanAlt = alt;
+
+                if (hasCaption) {
+                  const parts = alt.split("|");
+                  cleanAlt = parts[0].trim();
+                  caption = parts.slice(1).join("|").trim();
+                }
+
+                return (
+                  <figure className="blog-image">
+                    <img {...props} alt={cleanAlt} />
+                    {caption && <figcaption>{caption}</figcaption>}
+                  </figure>
+                );
+              },
+            }}
+          >
             {blog.content}
           </ReactMarkdown>
         </div>

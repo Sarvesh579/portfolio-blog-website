@@ -17,7 +17,22 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  /* Smooth animation */
+  transition: transform 0.35s ease, 
+    opacity 0.3s ease;
+  will-change: transform;
+
+  /* Visible state */
+  transform: translateY(0);
+  opacity: 1;
 }
+
+.navbar.nav-hidden {
+  transform: translateY(calc(-100% - 24px));
+  opacity: 0;
+}
+
 
 .nav-brand {
   font-family: 'Orbitron', sans-serif;
