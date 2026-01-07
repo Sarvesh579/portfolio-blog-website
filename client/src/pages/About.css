@@ -117,6 +117,10 @@
     0 0 50px rgba(255, 255, 255, 0.18);
 }
 
+.intro-card :hover {
+  cursor: default;
+}
+
 /* Large Magazine Photo */
 .intro-photo {
   height: 300px;              /* controls size */
@@ -229,16 +233,17 @@
   }
 
   .first-name {
-    font-size: 40px;
+    font-size: 50px;
   }
 
   .last-name {
     font-size: 40px;
-    margin-top: -4px;
+    margin-top: -2px;
+    margin-bottom: 20px;
   }
     
   .intro-date {
-    display: none;
+    color:#444;
   }
 
   .intro-content p {
@@ -285,123 +290,10 @@
   to { border-color: #111 }
 }
 
-/* -------------------------------------------------
-   Intro Bubbles — ROUND / MULTILINE
-------------------------------------------------- */
-.intro-bubbles {
-  margin-top: 22px;
-  display: flex;
-  gap: 22px;
-  align-items: flex-start;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 0 25vw;
-}
-
-/* Bubble base */
-.bubble {
-  width: 220px;
-  height: 220px;
-
-  padding: 22px;
-  border-radius: 50%;
-
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(10px);
-
-  box-shadow:
-    0 12px 30px rgba(0, 0, 0, 0.15),
-    inset 0 0 20px rgba(255, 255, 255, 0.3);
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-
-  opacity: 0;
-  transform: translateY(20px) scale(0.95);
-  animation: bubblePop 0.9s ease forwards;
-}
-
-/* Slight variation for visual interest */
-#bubble1 {
-  animation-delay: 0.2s;
-}
-
-#bubble2 {
-  margin-top: 70px; /* offset for organic layout */
-  animation-delay: 0.4s;
-}
-
-/* Title inside bubble */
-.bubble h4 {
-  margin: 0 0 10px;
-  font-size: 14px;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-  color: #444;
-}
-
-/* Bubble text */
-.bubble p {
-  margin: 0;
-  font-size: 15px;
-  line-height: 1.4;
-  color: #222;
-}
-
-/* Hover interaction */
-.bubble:hover {
-  animation-play-state: paused;
-  transform: translateY(-6px) scale(1.02);
-  transition: transform 0.25s ease;
-}
-
-/* Entry animation */
-@keyframes bubblePop {
-  from {
-    opacity: 0;
-    transform: translateY(20px) scale(0.92);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@media (max-width: 768px) {
-  .intro-bubbles {
-    flex-direction: column;
-    align-items: center;   /* 🔑 key fix */
-    padding: 0 10vw;
-    gap: 18px;
-  }
-
-  .bubble {
-    width: 180px;
-    height: 180px;
-    padding: 18px;
-  }
-
-  #bubble1 {
-    margin-right: 30vw;
-  }
-
-  #bubble2 {
-    margin-left: 30vw;
-    margin-top: 0; /* remove stagger on mobile */
-  }
-
-  .bubble p {
-    font-size: 14px;
-  }
-}
-
 
 /* -------------------------------------------------
    Personality Gallery
 ------------------------------------------------- */
-
 .about-gallery {
   margin-top: 20px;
 }
@@ -412,6 +304,10 @@
   overflow-x: auto;
   padding: 16px 24px;
   scroll-snap-type: x mandatory;
+}
+
+.gallery-track :hover {
+  cursor: ew-resize;
 }
 
 .gallery-track::-webkit-scrollbar {
@@ -429,8 +325,8 @@
 }
 
 .gallery-item {
-  min-width: 220px;
-  min-height: 80px;
+  min-width: 190px;
+  min-height: 60px;
   max-width: 240px;
   padding: 10px;
   background: rgba(255,255,255,0.06);
@@ -454,31 +350,62 @@
 ------------------------------------------------- */
 
 .about-skills {
-  padding: 80px 24px;
+  padding: 40px 24px;
   text-align: center;
 }
 
 .skills-grid {
   max-width: 600px;
   margin: 24px auto 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 16px;
+  display: flex;
+  justify-content: center;
 }
 
 .skills-grid div {
   display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.skills-grid div div {
+  display: flex;
   flex-direction: column;
-  justify-content: top;
+  justify-content: start;
   align-items: center;
 }
 
 .skills-grid div span {
-  background: rgba(255,255,255,0.05);
-  padding: 7px;
-  margin: 2px;
-  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 8px 14px;
+  margin: 4px;
+  border-radius: 999px;
   color: lavender;
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+
+  display: inline-block;
+  transition:
+    background 0.18s ease,
+    transform 0.18s ease;
+}
+
+.skills-grid div span:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+  cursor: default;
+}
+
+@media (max-width: 768px) {
+  .skills-grid {
+    display: flex;
+    flex-direction: column;
+  }
+  .skills-grid div {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
 }
 
 /* -------------------------------------------------

@@ -1,0 +1,70 @@
+/* OUTER: visual allowance */
+.gravity-zone-outer {
+  width: 500px;
+  height: 450px;
+  margin: 20px auto;
+  position: relative;
+}
+
+/* INNER: physics boundary */
+.gravity-zone {
+  position: relative;
+  width: 440px;
+  height: 440px;
+  margin: 10px; /* shadow breathing room */
+  overflow: visible; /* IMPORTANT */
+  touch-action: none;
+}
+
+.gravity-ball {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 12px; /* used only for text spacing */
+  border-radius: 50%;
+
+  background: #cccccc11;
+  backdrop-filter: blur(3px);
+
+  color: #ddd;
+  font-size: 1rem;
+  text-align: center;
+  white-space: nowrap;
+
+  box-shadow:
+    inset -4px -4px 10px rgba(0,0,0,0.25),
+    0 10px 20px rgba(0,0,0,0.35);
+
+  cursor: grab;
+  user-select: none;
+}
+
+.gravity-ball :hover {
+  cursor: grab;
+}
+
+.gravity-ball :active {
+  cursor: grabbing;
+
+}
+
+@media (max-width: 768px) {
+  .gravity-zone-outer {
+    left: -10px;
+    width: 100vw;
+    height: auto;
+    margin: 0 0;
+    display: flex;
+    justify-content: center;
+    overflow: visible;
+  }
+
+  .gravity-zone {
+    width: 100vw;
+    max-width: 100vw;
+    height: 130vw; /* tall portrait gravity well */
+    margin: 0;
+  }
+}
