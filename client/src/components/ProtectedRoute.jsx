@@ -7,10 +7,19 @@ export default function ProtectedRoute({ children }) {
   useEffect(() => {
     async function checkAuth() {
       try {
+        const token = localStorage.getItem("adminToken");
+
+        if (!token) {
+          setAllowed(false);
+          return;
+        }
+
         const res = await fetch(
-          "http://localhost:4000/api/admin/stats",
+          `${import.meta.env.VITE_API_URL}/api/admin/stats`,
           {
-            credentials: "include",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           }
         );
 
@@ -23,7 +32,7 @@ export default function ProtectedRoute({ children }) {
     checkAuth();
   }, []);
 
-  if (allowed === null) return null; // or loader
+  if (allowed === null) return null;
   if (!allowed) return <Navigate to="/admin/login" />;
 
   return children;

@@ -17,6 +17,7 @@ const router = express.Router();
 router.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
+    console.log("Trying");
 
     const admin = await Admin.findOne({ username });
     if (!admin) {

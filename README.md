@@ -97,6 +97,7 @@ mern-portfolio/
 │   └── package.json
 │
 ├── .gitignore
+├── SECURITY.md
 └── README.md
 ```
 

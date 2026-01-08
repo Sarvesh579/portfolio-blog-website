@@ -30,8 +30,10 @@ export default function AdminCerts() {
   });
 
   async function fetchCerts() {
-    const res = await fetch("http://localhost:4000/api/certifications", {
-      credentials: "include"
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/certifications`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("adminToken")}`
+      }
     });
     const data = await res.json();
     setCerts(data);
@@ -85,17 +87,21 @@ export default function AdminCerts() {
 
     try {
       if (editing) {
-        await fetch(`http://localhost:4000/api/certifications/${editing}`, {
+        await fetch(`${import.meta.env.VITE_API_URL}/api/certifications/${editing}`, {
           method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
+          },
           body: JSON.stringify(payload)
         });
       } else {
-        await fetch("http://localhost:4000/api/certifications", {
+        await fetch(`${import.meta.env.VITE_API_URL}/api/certifications`, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
+          },
           body: JSON.stringify(payload)
         });
       }
@@ -110,9 +116,11 @@ export default function AdminCerts() {
   async function deleteCert(id) {
     if (!confirm("Delete this certificate?")) return;
 
-    await fetch(`http://localhost:4000/api/certifications/${id}`, {
+    await fetch(`${import.meta.env.VITE_API_URL}/api/certifications/${id}`, {
       method: "DELETE",
-      credentials: "include"
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("adminToken")}`
+      }
     });
 
     fetchCerts();

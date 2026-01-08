@@ -17,8 +17,10 @@ export default function AdminProjects() {
   });
 
   async function fetchProjects() {
-    const res = await fetch("http://localhost:4000/api/projects", {
-      credentials: "include",
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/projects`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("adminToken")}`
+      }
     });
     const data = await res.json();
     setProjects(data);
@@ -66,17 +68,21 @@ export default function AdminProjects() {
 
     try {
       if (editing) {
-        await fetch(`http://localhost:4000/api/projects/${editing}`, {
+        await fetch(`${import.meta.env.VITE_API_URL}/api/projects/${editing}`, {
           method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
+          },
           body: JSON.stringify(payload)
         });
       } else {
-        await fetch("http://localhost:4000/api/projects", {
+        await fetch(`${import.meta.env.VITE_API_URL}/api/projects`, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
+          },
           body: JSON.stringify(payload)
         });
       }
@@ -91,9 +97,11 @@ export default function AdminProjects() {
   async function deleteProject(id) {
     if (!confirm("Delete this project?")) return;
 
-    const res = await fetch(`http://localhost:4000/api/projects/${id}`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/projects/${id}`, {
       method: "DELETE",
-      credentials: "include"
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("adminToken")}`
+      }
     });
 
     if (!res.ok) {

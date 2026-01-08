@@ -25,8 +25,8 @@ export default function Works() {
         setLoading(true);
 
         const [pRes, cRes] = await Promise.all([
-          fetch("http://localhost:4000/api/projects"),
-          fetch("http://localhost:4000/api/certifications")
+          fetch(`${import.meta.env.VITE_API_URL}/api/projects`),
+          fetch(`${import.meta.env.VITE_API_URL}/api/certifications`)
         ]);
 
         const p = await pRes.json();

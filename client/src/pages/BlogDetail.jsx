@@ -12,7 +12,7 @@ export default function BlogDetail() {
   useEffect(() => {
     async function fetchBlog() {
       try {
-        const res = await fetch(`http://localhost:4000/api/blogs/${id}`);
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/blogs/${id}`);
         if (!res.ok) {
           navigate("/blogs");
           return;

@@ -45,8 +45,11 @@ export default function AdminBlogEditor() {
     async function fetchBlog() {
       try {
         const res = await fetch(
-          `http://localhost:4000/api/blogs/${id}`,
-          { credentials: "include" }
+          `${import.meta.env.VITE_API_URL}/api/blogs/${id}`, {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("adminToken")}`
+            }
+          }
         );
 
         if (!res.ok) {
@@ -102,17 +105,21 @@ export default function AdminBlogEditor() {
       setSaving(true);
 
       if (isEdit) {
-        await fetch(`http://localhost:4000/api/blogs/${id}`, {
+        await fetch(`${import.meta.env.VITE_API_URL}/api/blogs/${id}`, {
           method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
+          headers: { 
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("adminToken")}`
+          },
           body: JSON.stringify(payload),
         });
       } else {
-        await fetch("http://localhost:4000/api/blogs", {
+        await fetch(`${import.meta.env.VITE_API_URL}/api/blogs`, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
+          headers: { 
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("adminToken")}`
+          },
           body: JSON.stringify(payload),
         });
       }

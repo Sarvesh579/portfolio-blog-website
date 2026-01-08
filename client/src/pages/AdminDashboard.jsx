@@ -17,8 +17,10 @@ export default function AdminDashboard() {
   useEffect(() => {
     async function fetchStats() {
       try {
-        const res = await fetch("http://localhost:4000/api/admin/stats", {
-          credentials: "include", // ✅ cookie-based auth
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/stats`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("adminToken")}`
+          }
         });
 
         if (!res.ok) throw new Error("Unauthorized");
@@ -38,9 +40,11 @@ export default function AdminDashboard() {
   ------------------------------------------------------- */
   async function handleLogout() {
     try {
-      await fetch("http://localhost:4000/api/admin/logout", {
+      await fetch(`http://localhost:4000/api/admin/logout`, {
         method: "POST",
-        credentials: "include",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("adminToken")}`
+        },
       });
     } catch (err) {
       console.error("Logout error:", err);

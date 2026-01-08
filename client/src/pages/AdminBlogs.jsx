@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from "react";
+ import { useEffect, useState, useMemo } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./AdminBlogs.css";
 
@@ -15,8 +15,10 @@ export default function AdminBlogs() {
   ------------------------------------------------------- */
   async function fetchBlogs() {
     try {
-      const res = await fetch("http://localhost:4000/api/blogs/admin/all", {
-        credentials: "include",
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/blogs/admin/all`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("adminToken")}`
+        },
       });
       const data = await res.json();
       setBlogs(data);
@@ -36,9 +38,11 @@ export default function AdminBlogs() {
     if (!confirm("Delete this blog?")) return;
 
     try {
-      await fetch(`http://localhost:4000/api/blogs/${id}`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/blogs/${id}`, {
         method: "DELETE",
-        credentials: "include"
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("adminToken")}`
+        }
       });
       fetchBlogs();
     } catch (err) {
