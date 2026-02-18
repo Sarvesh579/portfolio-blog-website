@@ -60,9 +60,9 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/admin/blogs", adminBlogRoutes);
 
 /* ---------------- HEALTH CHECK ---------------- */
-app.get("/", (req, res) => {
+/* app.get("/", (req, res) => {
   res.send("API running ✅");
-});
+}); */
 
 /* ---------------- DB ---------------- */
 mongoose
