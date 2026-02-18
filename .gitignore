@@ -1,5 +1,6 @@
 .env
 .env.local
+**/.env
 credentials.txt
 
 node_modules/

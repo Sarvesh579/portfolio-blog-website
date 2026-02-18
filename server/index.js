@@ -1,4 +1,6 @@
 import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
 dotenv.config(); // ✅ MUST be before anything else
 
 import express from "express";
@@ -14,6 +16,17 @@ import certificationRoutes from "./routes/certificationRoutes.js";
 
 /* ---------------- APP ---------------- */
 const app = express();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Serve React build
+app.use(express.static(path.join(__dirname, "../client/dist")));
+
+app.use((req, res) => {
+  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+});
+
+
 
 /* ---------------- MIDDLEWARE ---------------- */
 
