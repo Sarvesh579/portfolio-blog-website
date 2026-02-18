@@ -158,7 +158,7 @@ export default function About() {
 
       {/* CTA */}
       <section className="about-cta">
-        <a href="/resume.pdf" className="resume-btn" download>
+        <a href="/Sarvesh_Dabholkar_CV.pdf" className="resume-btn" download>
           Download Resume
         </a>
         <Link to="/works" className="works-btn">
