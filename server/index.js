@@ -19,18 +19,8 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Serve React build
-app.use(express.static(path.join(__dirname, "../client/dist")));
-
-app.use((req, res) => {
-  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
-});
-
-
 
 /* ---------------- MIDDLEWARE ---------------- */
-
-
 app.use(
   cors({
     origin: [
@@ -80,8 +70,19 @@ mongoose
   .then(() => console.log("MongoDB Connected ✅"))
   .catch((err) => console.error("Mongo error:", err));
 
+mongoose.connection.once("open", () => {
+  console.log("Connected to DB:", mongoose.connection.name);
+});
+
 /* ---------------- SERVER ---------------- */
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
+});
+
+// Serve React build
+app.use(express.static(path.join(__dirname, "../client/dist")));
+
+app.use((req, res) => {
+  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
 });
