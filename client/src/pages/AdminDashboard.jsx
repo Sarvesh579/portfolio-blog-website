@@ -40,7 +40,7 @@ export default function AdminDashboard() {
   ------------------------------------------------------- */
   async function handleLogout() {
     try {
-      await fetch(`http://localhost:4000/api/admin/logout`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/admin/logout`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("adminToken")}`

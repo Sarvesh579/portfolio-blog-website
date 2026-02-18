@@ -4,7 +4,6 @@ dotenv.config(); // ✅ MUST be before anything else
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import cookieParser from "cookie-parser";
 
 /* ---------------- ROUTES ---------------- */
 import blogRoutes from "./routes/blogRoutes.js";
@@ -18,18 +17,13 @@ const app = express();
 
 /* ---------------- MIDDLEWARE ---------------- */
 
-/**
- * CORS
- * - credentials: true → cookies allowed
- * - origin must be explicit (not "*")
- */
+
 app.use(
   cors({
     origin: [
       "http://localhost:5173",
       "https://your-frontend.vercel.app"
     ],
-    credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
