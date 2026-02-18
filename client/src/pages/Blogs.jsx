@@ -1,6 +1,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Blogs.css";
+const API = import.meta.env.VITE_API_URL || "";
 
 export default function Blogs() {
   const [blogs, setBlogs] = useState([]);
@@ -16,7 +17,7 @@ export default function Blogs() {
   useEffect(() => {
     async function fetchBlogs() {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/blogs`);
+        const res = await fetch(`${API}/api/blogs`);
         const data = await res.json();
         setBlogs(data);
       } catch (err) {

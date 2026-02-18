@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import "./BlogDetail.css";
 import remarkGfm from "remark-gfm";
+const API = import.meta.env.VITE_API_URL || "";
 
 export default function BlogDetail() {
   const { id } = useParams();
@@ -12,7 +13,7 @@ export default function BlogDetail() {
   useEffect(() => {
     async function fetchBlog() {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/blogs/${id}`);
+        const res = await fetch(`${API}/api/blogs/${id}`);
         if (!res.ok) {
           navigate("/blogs");
           return;

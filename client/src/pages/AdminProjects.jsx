@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./AdminProjects.css";
+const API = import.meta.env.VITE_API_URL || "";
 
 export default function AdminProjects() {
   const [projects, setProjects] = useState([]);
@@ -17,7 +18,7 @@ export default function AdminProjects() {
   });
 
   async function fetchProjects() {
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/projects`, {
+    const res = await fetch(`${API}/api/projects`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("adminToken")}`
       }
@@ -68,7 +69,7 @@ export default function AdminProjects() {
 
     try {
       if (editing) {
-        await fetch(`${import.meta.env.VITE_API_URL}/api/projects/${editing}`, {
+        await fetch(`${API}/api/projects/${editing}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -77,7 +78,7 @@ export default function AdminProjects() {
           body: JSON.stringify(payload)
         });
       } else {
-        await fetch(`${import.meta.env.VITE_API_URL}/api/projects`, {
+        await fetch(`${API}/api/projects`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -97,7 +98,7 @@ export default function AdminProjects() {
   async function deleteProject(id) {
     if (!confirm("Delete this project?")) return;
 
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/projects/${id}`, {
+    const res = await fetch(`${API}/api/projects/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("adminToken")}`

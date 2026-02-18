@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./Works.css";
+const API = import.meta.env.VITE_API_URL || "";
 
 function formatDate(dateStr) {
   if (!dateStr) return "";
@@ -25,8 +26,8 @@ export default function Works() {
         setLoading(true);
 
         const [pRes, cRes] = await Promise.all([
-          fetch(`${import.meta.env.VITE_API_URL}/api/projects`),
-          fetch(`${import.meta.env.VITE_API_URL}/api/certifications`)
+          fetch(`${API}/api/projects`),
+          fetch(`${API}/api/certifications`)
         ]);
 
         const p = await pRes.json();

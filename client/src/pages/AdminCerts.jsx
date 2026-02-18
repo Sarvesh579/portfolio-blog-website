@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./AdminCerts.css";
+const API = import.meta.env.VITE_API_URL || "";
 
 function formatDate(dateStr) {
   if (!dateStr) return "";
@@ -30,7 +31,7 @@ export default function AdminCerts() {
   });
 
   async function fetchCerts() {
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/certifications`, {
+    const res = await fetch(`${API}/api/certifications`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("adminToken")}`
       }
@@ -87,7 +88,7 @@ export default function AdminCerts() {
 
     try {
       if (editing) {
-        await fetch(`${import.meta.env.VITE_API_URL}/api/certifications/${editing}`, {
+        await fetch(`${API}/api/certifications/${editing}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -96,7 +97,7 @@ export default function AdminCerts() {
           body: JSON.stringify(payload)
         });
       } else {
-        await fetch(`${import.meta.env.VITE_API_URL}/api/certifications`, {
+        await fetch(`${API}/api/certifications`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -116,7 +117,7 @@ export default function AdminCerts() {
   async function deleteCert(id) {
     if (!confirm("Delete this certificate?")) return;
 
-    await fetch(`${import.meta.env.VITE_API_URL}/api/certifications/${id}`, {
+    await fetch(`${API}/api/certifications/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("adminToken")}`

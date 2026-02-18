@@ -1,5 +1,6 @@
  import { useEffect, useState, useMemo } from "react";
 import { useNavigate, Link } from "react-router-dom";
+const API = import.meta.env.VITE_API_URL || "";
 import "./AdminBlogs.css";
 
 export default function AdminBlogs() {
@@ -15,7 +16,7 @@ export default function AdminBlogs() {
   ------------------------------------------------------- */
   async function fetchBlogs() {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/blogs/admin/all`, {
+      const res = await fetch(`${API}/api/blogs/admin/all`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("adminToken")}`
         },
@@ -38,7 +39,7 @@ export default function AdminBlogs() {
     if (!confirm("Delete this blog?")) return;
 
     try {
-      await fetch(`${import.meta.env.VITE_API_URL}/api/blogs/${id}`, {
+      await fetch(`${API}/api/blogs/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("adminToken")}`

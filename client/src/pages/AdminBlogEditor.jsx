@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import "./AdminBlogEditor.css";
+const API = import.meta.env.VITE_API_URL || "";
 
 /* -------------------------------------------------------
    DATE FORMAT UTILS
@@ -45,7 +46,7 @@ export default function AdminBlogEditor() {
     async function fetchBlog() {
       try {
         const res = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/blogs/${id}`, {
+          `${API}/api/blogs/${id}`, {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("adminToken")}`
             }
@@ -105,7 +106,7 @@ export default function AdminBlogEditor() {
       setSaving(true);
 
       if (isEdit) {
-        await fetch(`${import.meta.env.VITE_API_URL}/api/blogs/${id}`, {
+        await fetch(`${API}/api/blogs/${id}`, {
           method: "PUT",
           headers: { 
             "Content-Type": "application/json",
@@ -114,7 +115,7 @@ export default function AdminBlogEditor() {
           body: JSON.stringify(payload),
         });
       } else {
-        await fetch(`${import.meta.env.VITE_API_URL}/api/blogs`, {
+        await fetch(`${API}/api/blogs`, {
           method: "POST",
           headers: { 
             "Content-Type": "application/json",

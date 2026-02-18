@@ -1,6 +1,7 @@
 import "./AdminDashboard.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+const API = import.meta.env.VITE_API_URL || "";
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ export default function AdminDashboard() {
   useEffect(() => {
     async function fetchStats() {
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/stats`, {
+        const res = await fetch(`${API}/api/admin/stats`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("adminToken")}`
           }
@@ -40,7 +41,7 @@ export default function AdminDashboard() {
   ------------------------------------------------------- */
   async function handleLogout() {
     try {
-      await fetch(`${import.meta.env.VITE_API_URL}/api/admin/logout`, {
+      await fetch(`${API}/api/admin/logout`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("adminToken")}`

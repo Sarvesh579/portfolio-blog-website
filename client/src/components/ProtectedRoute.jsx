@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
+const API = import.meta.env.VITE_API_URL || "";
 
 export default function ProtectedRoute({ children }) {
   const [allowed, setAllowed] = useState(null);
@@ -15,7 +16,7 @@ export default function ProtectedRoute({ children }) {
         }
 
         const res = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/admin/stats`,
+          `${API}/api/admin/stats`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
