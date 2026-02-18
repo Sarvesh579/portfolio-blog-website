@@ -42,7 +42,7 @@ router.post("/login", async (req, res) => {
       maxAge: 2 * 60 * 60 * 1000
     });
 
-    res.json({ success: true });
+    res.json({ token });
   } catch (err) {
     console.error("Login error:", err);
     res.status(500).json({ error: "Server error" });
