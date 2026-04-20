@@ -17,7 +17,7 @@ const router = express.Router();
 router.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
-    console.log("Trying");
+    console.log("Trying...");
 
     const admin = await Admin.findOne({ username });
     if (!admin) {
@@ -41,8 +41,8 @@ router.post("/login", async (req, res) => {
       secure: false, // true only in HTTPS
       maxAge: 2 * 60 * 60 * 1000
     });
-
     res.json({ token });
+    console.log("Login success");
   } catch (err) {
     console.error("Login error:", err);
     res.status(500).json({ error: "Server error" });

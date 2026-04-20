@@ -137,3 +137,46 @@
   background: lavender;
   color: #000;
 }
+
+/* ------------------------------------------------------
+   RESPONSIVE (MOBILE)
+------------------------------------------------------ */
+@media (max-width: 768px) {
+  .admin-projects {
+    padding: 20px;
+  }
+
+  .projects-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .project-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .admin-image-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .admin-image-list img {
+    margin-right: 0;
+    width: 100%;
+    max-width: 160px;
+  }
+
+  .p-actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .p-actions button {
+    flex: 1;
+    text-align: center;
+  }
+}
