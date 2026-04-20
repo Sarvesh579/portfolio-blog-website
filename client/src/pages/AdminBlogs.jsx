@@ -1,4 +1,4 @@
- import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useNavigate, Link } from "react-router-dom";
 const API = import.meta.env.VITE_API_URL || "";
 import "./AdminBlogs.css";
@@ -31,6 +31,26 @@ export default function AdminBlogs() {
   useEffect(() => {
     fetchBlogs();
   }, []);
+
+  /* -------------------------------------------------------
+     TOGGLE PUBLISH STATUS
+  ------------------------------------------------------- */
+  async function togglePublish(blog) {
+    const newStatus = !blog.published;
+    try {
+      await fetch(`${API}/api/blogs/${blog._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("adminToken")}`
+        },
+        body: JSON.stringify({ published: newStatus })
+      });
+      fetchBlogs();
+    } catch (err) {
+      console.error("Toggle publish failed:", err);
+    }
+  }
 
   /* -------------------------------------------------------
      DELETE BLOG
@@ -145,9 +165,8 @@ export default function AdminBlogs() {
 
           {(dropdownOpen === "open" || dropdownOpen === "closing") && (
             <div
-              className={`dropdown-menu ${
-                dropdownOpen === "closing" ? "close" : ""
-              }`}
+              className={`dropdown-menu ${dropdownOpen === "closing" ? "close" : ""
+                }`}
             >
               <div className="dropdown-scroll">
                 <div
@@ -206,8 +225,8 @@ export default function AdminBlogs() {
               )}
 
               <div className="blog-meta">
-                <span>
-                  Status: {blog.published ? "Published" : "Draft"}
+                <span className={`status-badge ${blog.published ? "published" : "draft"}`}>
+                  {blog.published ? "Published" : "Unpublished"}
                 </span>
                 <span>
                   Importance: {blog.importance ?? 0}
@@ -216,6 +235,22 @@ export default function AdminBlogs() {
             </div>
 
             <div className="blog-admin-actions">
+              {blog.published ? (
+                <button
+                  className="unpublish-btn"
+                  onClick={() => togglePublish(blog)}
+                >
+                  Unpublish
+                </button>
+              ) : (
+                <button
+                  className="publish-btn"
+                  onClick={() => togglePublish(blog)}
+                >
+                  Publish Now
+                </button>
+              )}
+
               <button
                 onClick={() =>
                   navigate(`/admin/blogs/edit/${blog._id}`)

@@ -2,6 +2,7 @@
 .env.local
 **/.env
 credentials.txt
+*.txt
 
 node_modules/
 client/node_modules/

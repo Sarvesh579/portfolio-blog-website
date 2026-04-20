@@ -87,7 +87,7 @@
 }
 
 .dropdown-item:hover {
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 /* ------------------------------------------------------
@@ -98,10 +98,11 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  margin: 20px 50px;
 }
 
 .blog-admin-card {
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
   padding: 16px;
   border-radius: 12px;
   display: flex;
@@ -134,7 +135,7 @@
 }
 
 .blog-tags span {
-  background: rgba(255,255,255,0.15);
+  background: rgba(255, 255, 255, 0.15);
   padding: 4px 8px;
   border-radius: 10px;
   font-size: 12px;
@@ -157,11 +158,17 @@
 }
 
 .blog-admin-actions button {
-  padding: 6px 12px;
-  border-radius: 6px;
+  padding: 6px 14px;
+  border-radius: 8px;
   cursor: pointer;
   border: none;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 13px;
+  transition: filter 0.2s;
+}
+
+.blog-admin-actions button:hover {
+  filter: brightness(0.85);
 }
 
 .blog-admin-actions button:first-child {
@@ -172,6 +179,44 @@
 .blog-admin-actions .delete-btn {
   background: #ff6666;
   color: #000;
+}
+
+/* ------------------------------------------------------
+   STATUS BADGES & PUBLISH BUTTON
+------------------------------------------------------ */
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-badge.draft {
+  background: rgba(255, 68, 68, 0.2);
+  color: #ff4444;
+  border: 1px solid rgba(255, 68, 68, 0.3);
+}
+
+.status-badge.published {
+  background: rgba(0, 255, 127, 0.15);
+  color: #00ff7f;
+  border: 1px solid rgba(0, 255, 127, 0.3);
+}
+
+.publish-btn {
+  background: #00ff7f !important;
+  color: #000 !important;
+}
+
+.unpublish-btn {
+  background: #ffcc66 !important;
+  color: #000 !important;
+}
+
+.admin-blogs button:hover {
+  filter: brightness(0.85);
 }
 
 /* ------------------------------------------------------
