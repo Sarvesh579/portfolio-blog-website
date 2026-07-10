@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Navbar from "./components/Navbar";
 import ScrollToTop from "./components/ScrollToTop";
@@ -25,6 +25,10 @@ import "./index.css";
 function Layout({ children, openContact }) {
   const location = useLocation();
   const adminPage = location.pathname.startsWith("/admin");
+
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/health`).catch(() => {});
+  }, []);
 
   return (
     <>

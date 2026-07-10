@@ -25,7 +25,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://your-frontend.vercel.app"
+      "https://sarvesh-dabholkar.vercel.app"
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -60,10 +60,9 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/admin/blogs", adminBlogRoutes);
 
 /* ---------------- HEALTH CHECK ---------------- */
-/* app.get("/", (req, res) => {
-  res.send("API running ✅");
-}); */
-
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok" });
+});
 /* ---------------- DB ---------------- */
 mongoose
   .connect(process.env.MONGO_URI)

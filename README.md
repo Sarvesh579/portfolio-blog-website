@@ -1,4 +1,5 @@
-# 🚀 MERN Portfolio Platform
+# Sarvesh P. D. 
+## MERN Portfolio and Blogging Platform
 
 A **full-stack, production-ready portfolio and content management system** built using the **MERN stack**.
 This platform is designed to showcase projects, certifications, and blogs — with a **secure admin dashboard** for complete control.
