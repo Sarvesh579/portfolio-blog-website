@@ -60,9 +60,22 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/admin/blogs", adminBlogRoutes);
 
 /* ---------------- HEALTH CHECK ---------------- */
-app.get("/health", (req, res) => {
-  res.status(200).json({ status: "ok" });
+app.get("/health", async (req, res) => {
+  try {
+    await mongoose.connection.db.admin().ping();
+
+    res.status(200).json({
+      server: "awake",
+      database: "connected",
+    });
+  } catch {
+    res.status(500).json({
+      server: "awake",
+      database: "disconnected",
+    });
+  }
 });
+
 /* ---------------- DB ---------------- */
 mongoose
   .connect(process.env.MONGO_URI)
